@@ -20,12 +20,17 @@ namespace Sudoku
         }
         public void AddValue(int row, int column, char value)
         {
-            values[row,column]=value;
+            if (row >= 0 && row < 4 && column >= 0 && column < 4)
+                if (value == ISudokuModel.VIDE || value >= '1' && value <= '4')
+                    values[row, column] = value;
         }
 
         public char GetValue(int row, int column)
         {
-            return values[row,column];
+            if (row >= 0 && row < 4 && column >= 0 && column < 4)
+                return values[row, column];
+            else
+                return ISudokuModel.VIDE;
         }
     }
 }
