@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sudoku
 {
-    internal interface SudokuModel
+    internal interface ISudokuModel
     {
         static char VIDE = (char)0;
 

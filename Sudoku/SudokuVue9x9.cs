@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text;
 
-internal class SudokuVue9x9:SudokuVue
+internal class SudokuVue9x9:ISudokuVue
 {
     private String format;
     private SudokuModel9x9 model;
@@ -21,7 +21,7 @@ internal class SudokuVue9x9:SudokuVue
             for (int j = 0; j < 9; j++)
             {
                 char val = model.GetValue(i, j);
-                param[pos++] = val == SudokuModel.VIDE ? '.' : val;
+                param[pos++] = val == ISudokuModel.VIDE ? '.' : val;
             }
         }
         return String.Format(GetFormat(GetGrilleVide()), param);

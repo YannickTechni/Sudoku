@@ -1,7 +1,7 @@
 ﻿using Sudoku;
 using System.Text;
 
-internal class SudokuVue4x4 : SudokuVue
+internal class SudokuVue4x4 : ISudokuVue
 {
     private SudokuModel4x4 model;
     private string? format = null;
@@ -20,7 +20,7 @@ internal class SudokuVue4x4 : SudokuVue
             for (int j = 0; j < 4; j++)
             {
                 char val = model.GetValue(i, j);
-                param[pos++] = val == SudokuModel.VIDE ? '.' : val;
+                param[pos++] = val == ISudokuModel.VIDE ? '.' : val;
             }
         }
         return String.Format(GetFormat(GetGrilleVide()), param);

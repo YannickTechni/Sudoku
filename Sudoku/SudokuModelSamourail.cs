@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sudoku
 {
-    internal class SudokuModelSamourail : SudokuModel
+    internal class SudokuModelSamourail : ISudokuModel
     {
         private char[,] values = new char[21, 21];
 
@@ -14,7 +14,7 @@ namespace Sudoku
             {
                 for (int col = 0; col < values.GetLength(1); col++)
                 {
-                    values[row, col] = SudokuModel.VIDE;
+                    values[row, col] = ISudokuModel.VIDE;
                 }
             }
         }

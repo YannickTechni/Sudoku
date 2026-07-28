@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text;
 
-internal class SudokuVueSamourail : SudokuVue
+internal class SudokuVueSamourail : ISudokuVue
 {
     private SudokuModelSamourail model;
     private string format;
@@ -23,7 +23,7 @@ internal class SudokuVueSamourail : SudokuVue
                 if (model.isValid(i, j))
                 {
                     char val = model.GetValue(i, j);
-                    param[pos++] = val == SudokuModel.VIDE ? '.' : val;
+                    param[pos++] = val == ISudokuModel.VIDE ? '.' : val;
                 }
 
             }

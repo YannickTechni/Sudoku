@@ -1,11 +1,16 @@
 ﻿using Sudoku;
 
-SudokuVue[] vue =
+ISudokuModel[] model =
 [
-    new SudokuVue4x4(new SudokuModel4x4()),
-    //new SudokuVue4x4(getTest4x4()),
-    new SudokuVue9x9(getTest9x9()),
-    new SudokuVueSamourail(getTestSamourail())
+    new SudokuModel4x4(),
+    new SudokuModel9x9(),
+    new SudokuModelSamourail()
+];
+ISudokuVue[] vue =
+[
+    new SudokuVue4x4(model[0] as SudokuModel4x4),
+    new SudokuVue9x9(model[1] as SudokuModel9x9),
+    new SudokuVueSamourail(model[2] as SudokuModelSamourail)
 ];
 Console.Write("""
     1. sudoku 4x4
@@ -15,7 +20,12 @@ Console.Write("""
     """);
 int choix = int.Parse(Console.ReadLine()) - 1;
 
-Console.WriteLine(vue[choix].GetGrille());
+
+SudokuControler controler = new();
+controler.Vue = vue[choix];
+controler.Model = model[choix];
+
+controler.Start();
 
 
 SudokuModelSamourail getTestSamourail()

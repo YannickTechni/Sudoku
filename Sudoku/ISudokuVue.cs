@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sudoku
 {
-    internal interface SudokuVue
+    internal interface ISudokuVue
     {
         String GetGrilleVide();
         String GetGrille();
