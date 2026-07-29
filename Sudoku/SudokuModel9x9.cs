@@ -4,33 +4,25 @@ using System.Text;
 
 namespace Sudoku
 {
-    internal class SudokuModel9x9 : ISudokuModel
+    internal class SudokuModel9x9 : AbstractSudokuModel, ISudokuModel
     {
-        private char[,] values = new char[9, 9];
+  
+        public SudokuModel9x9():base(new char[9, 9])
+        {
+          }
 
-        public SudokuModel9x9()
+        public int NbLigne => 9;
+
+        public int NbColonne => 9;
+
+          public override bool IsValid(int row, int column)
         {
-            for (int row = 0; row < values.GetLength(0); row++)
-            {
-                for (int col = 0; col < values.GetLength(1); col++)
-                {
-                    values[row, col] = ISudokuModel.VIDE;
-                }
-            }
-        }
-        public void AddValue(int row, int column, char value)
-        {
-            if (row >= 0 && row < 9 && column >= 0 && column < 9)
-                if (value == ISudokuModel.VIDE || value >= '1' && value <= '9')
-                    values[row, column] = value;
+            return row >= 0 && row < 9 && column >= 0 && column < 9;
         }
 
-        public char GetValue(int row, int column)
+        public override bool IsValueValid(char value)
         {
-            if (row >= 0 && row < 9 && column >= 0 && column < 9)
-                return values[row, column];
-            else
-                return ISudokuModel.VIDE;
+            return value == ISudokuModel.VIDE || value >= '1' && value <= '9';
         }
     }
 }

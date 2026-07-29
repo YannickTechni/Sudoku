@@ -9,30 +9,30 @@ internal class SudokuControler
     internal void Start()
     {
         Regex regex = new Regex(@"(?'quitter'[Qq])|(?'line'\d+)\.(?'column'\d+)(\.(?'value'\S))?");
-    
-        Match match = regex.Match("1.1.2");
-        Console.WriteLine(match.Success);
-        Console.WriteLine("group 0 :"+match.Groups[0].Value);
-        Console.WriteLine("group 1 :" + match.Groups["quitter"].Value);
-        Console.WriteLine("group 2 :" + match.Groups["line"].Value);
-        Console.WriteLine("group 3 :" + match.Groups["column"].Value);
-        Console.WriteLine("group 4 :" + match.Groups["value"].Value);
 
-        match = regex.Match("q");
-        Console.WriteLine(match.Success);
-        Console.WriteLine("group 0 :" + match.Groups[0].Value);
-        Console.WriteLine("group 1 :" + match.Groups[1].Value);
-        Console.WriteLine("group 2 :" + match.Groups[2].Value);
-        Console.WriteLine("group 3 :" + match.Groups[3].Value);
-        Console.WriteLine("group 4 :" + match.Groups[4].Value);
-
-        match = regex.Match("toto");
-        Console.WriteLine(match.Success);
-        Console.WriteLine("group 0 :" + match.Groups[0].Value);
-        Console.WriteLine("group 1 :" + match.Groups[1].Value);
-        Console.WriteLine("group 2 :" + match.Groups[2].Value);
-        Console.WriteLine("group 3 :" + match.Groups[3].Value);
-        Console.WriteLine("group 4 :" + match.Groups[4].Value);
-
+        Console.WriteLine(Vue.GetGrille());
+        Console.Write("Entrez [ligne].[colonne].valeur : ");
+        Match match = regex.Match(Console.ReadLine());
+        while (!match.Groups["quitter"].Success)
+        {
+            if (match.Groups["value"].Success)
+            {
+                Model.AddValue(
+                    int.Parse(match.Groups["line"].Value)-1,
+                    int.Parse(match.Groups["column"].Value)-1,
+                     match.Groups["value"].Value[0]);
+            }
+            else
+            {
+                Model.AddValue(
+                    int.Parse(match.Groups["line"].Value)-1,
+                    int.Parse(match.Groups["column"].Value)-1,
+                    ISudokuModel.VIDE);
+            }
+            Console.WriteLine(Vue.GetGrille());
+            Console.Write("Entrez [ligne].[colonne].[valeur] : ");
+            match = regex.Match(Console.ReadLine());
+        }
+        ;
     }
 }
