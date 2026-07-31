@@ -7,7 +7,7 @@ namespace Sudoku
     internal class SudokuModel4x4 : AbstractSudokuModel, ISudokuModel
     {
 
-        public SudokuModel4x4() : base(new char[4, 4])
+        public SudokuModel4x4() : base()
         {
         }
 
@@ -37,6 +37,13 @@ namespace Sudoku
         public override bool IsValueValid(char value)
         {
             return value == ISudokuModel.VIDE || value >= '1' && value <= '4';
+        }
+
+        protected override SudokuCellule[,]? buildGrille()
+        {
+            SudokuCellule[,]? grille = new SudokuCellule[4,4];
+
+            return grille ;
         }
     }
 }
